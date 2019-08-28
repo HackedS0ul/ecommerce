@@ -188,7 +188,7 @@
                         
                         <div class="col-md-7 col-sm-6 col-xs-12 mb-40">
                             <div class="product-details section">
-                                <h3>{{object.get_category_display }}</h3>
+                                <h4>{{object.get_category_display }}</h4>
                                 <!-- Title -->
                                 <h1 class="title">{{ object.name }}</h1>
                                 <!-- Price Ratting -->
@@ -199,10 +199,10 @@
                                     <span class="ratting float-right">
                                     {% if object.ratings == 1 %}
                                         <i class="fa fa-star active"></i>
-                                     {% elif object.ratings == 2 %}
+                                    {% elif object.ratings == 2 %}
                                         <i class="fa fa-star active"></i>
                                         <i class="fa fa-star active"></i>
-                                     {% elif object.ratings == 3 %}
+                                    {% elif object.ratings == 3 %}
                                         <i class="fa fa-star active"></i>
                                         <i class="fa fa-star active"></i>
                                         <i class="fa fa-star active"></i>
@@ -219,11 +219,14 @@
                                         <i class="fa fa-star active"></i>
                                     {% else %}
                                         <i class="fa fa-star"></i>
-                                    
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
                                     {% endif%}
                                    
                                    
-                                        <span> ({{ object.ratings }} Customer Review)</span>
+                                        <span> ({{ object.ratings }} Customers Ratings)</span>
                                     </span>
                                 </div>
                                 <!-- Short Description -->
