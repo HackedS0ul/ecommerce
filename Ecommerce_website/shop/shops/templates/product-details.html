@@ -20,13 +20,9 @@
         <link rel="stylesheet" href="{% static 'css/shortcodes/shortcode.css'%}">
         <link rel="stylesheet" href="{% static 'css/style.css'%}">
         <link rel="stylesheet" href="{% static 'css/responsive.css'%}">
-        <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+        <script src="{% static 'js/vendor/modernizr-2.8.3.min.js'%}"></script>
     </head>
     <body>
-        <!--[if lt IE 8]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        <!-- Add your site or application content here -->
         <div class="waraper">
             <header>
                 <div class="header-area">
@@ -34,7 +30,7 @@
                         <div class="row">
                             <div class="col-md-3 col-lg-3  col-sm-4 col-xs-4">
                                 <div class="logo">
-                                    <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                                    <a href="index.html"><img src="{% static 'img/logo/logo.png'%}" alt=""></a>
                                 </div>
                             </div>
                             <div class="col-md-6 col-lg-6 col-sm-2 col-xs-2 text-center">
@@ -164,19 +160,19 @@
                             <!-- Tab panes -->
                             <div class="tab-content mb-10">
                                 <div class="pro-large-img tab-pane active" id="pro-large-img-1">
-                                    <img src="assets/img/product/10.jpg" alt="" />
+                                    <img src="{% static 'img/product/first.jpg'%}" alt="" />
                                 </div>
                                 <div class="pro-large-img tab-pane" id="pro-large-img-2">
-                                    <img src="assets/img/product/11.jpg" alt="" />
+                                    <img src="{% static 'img/product/first.jpg'%}" alt="" />
                                 </div>
                                 <div class="pro-large-img tab-pane" id="pro-large-img-3">
-                                    <img src="assets/img/product/12.jpg" alt="" />
+                                    <img src="{% static 'img/product/first.jpg'%}" alt="" />
                                 </div>
                                 <div class="pro-large-img tab-pane" id="pro-large-img-4">
-                                    <img src="assets/img/product/13.jpg" alt="" />					
+                                    <img src="{% static 'img/product/first.jpg'%}" alt="" />					
                                 </div>
                                 <div class="pro-large-img tab-pane" id="pro-large-img-5">
-                                    <img src="assets/img/product/14.jpg" alt="" />
+                                    <img src="{% static 'img/product/first.jpg'%}" alt="" />
                                 </div>
                             </div>
                             <!-- QuickView Product Thumbnail Slider -->
@@ -189,76 +185,102 @@
                             </div>
                         </div>
                         <!-- QuickView Product Details -->
-                        {% for products in object_list %}
+                        
                         <div class="col-md-7 col-sm-6 col-xs-12 mb-40">
                             <div class="product-details section">
-                                {{products.get_category_display }}
+                                <h3>{{object.get_category_display }}</h3>
                                 <!-- Title -->
-                                <h1 class="title">{{ products.name }}</h1>
+                                <h1 class="title">{{ object.name }}</h1>
                                 <!-- Price Ratting -->
                                 <div class="price-ratting section">
                                     <!-- Price -->
-                                    <span class="price float-left"><span class="new">€ {{ products.price }}</span></span>
+                                    <span class="price float-left"><span class="new">€ {{ object.price }}</span></span>
                                     <!-- Ratting -->
                                     <span class="ratting float-right">
+                                    {% if object.ratings == 1 %}
+                                        <i class="fa fa-star active"></i>
+                                     {% elif object.ratings == 2 %}
+                                        <i class="fa fa-star active"></i>
+                                        <i class="fa fa-star active"></i>
+                                     {% elif object.ratings == 3 %}
+                                        <i class="fa fa-star active"></i>
+                                        <i class="fa fa-star active"></i>
+                                        <i class="fa fa-star active"></i>
+                                    {% elif object.ratings == 4 %}
+                                        <i class="fa fa-star active"></i>
+                                        <i class="fa fa-star active"></i>
+                                        <i class="fa fa-star active"></i>
+                                        <i class="fa fa-star active"></i>
+                                    {% elif object.ratings == 5 %}
                                         <i class="fa fa-star active"></i>
                                         <i class="fa fa-star active"></i>
                                         <i class="fa fa-star active"></i>
                                         <i class="fa fa-star active"></i>
                                         <i class="fa fa-star active"></i>
-                                        <span> (01 Customer Review)</span>
+                                    {% else %}
+                                        <i class="fa fa-star"></i>
+                                    
+                                    {% endif%}
+                                   
+                                   
+                                        <span> ({{ object.ratings }} Customer Review)</span>
                                     </span>
                                 </div>
                                 <!-- Short Description -->
                                 <div class="short-desc section">
                                     <h5 class="pd-sub-title">Quick Overview</h5>
-                                    <p> {{ products.description }} </p>
+                                    <p> {{ object.description }} </p>
                                 </div>
                                 <!-- Product Size -->
 
                                 <div class="product-size section">
                                     <h5 class="pd-sub-title ">Select Size</h5>
-                                     {% if products.get_size_display == "Small" %}
+                                     {% if object.get_size_display == "Small" %}
                                     <button class="active">s</button>
                                     {% else %}
                                     <button>s</button>
                                     {% endif %}
-                                    {% if products.get_size_display == "Medium" %}
+                                    {% if object.get_size_display == "Medium" %}
                                     <button class="active">m</button>
                                     {% else %}
                                      <button>m</button>
                                     {% endif %}
-                                     {% if products.get_size_display == "Large" %}
+                                     {% if object.get_size_display == "Large" %}
                                     <button class="active">L</button>
                                     {% else %}
                                     <button>L</button>
                                     {% endif %}
-                                    <button>xl</button>
+                                    {% if object.get_size_display == "X Size" %}
+                                    <button class="active">X</button>
+                                    {% else %}
+                                     <button>X</button>
+                                     {% endif %}
+                                    
                                 </div>
                                 <!-- Product Color -->
                                 <div class="color-list section">
                                     <h5 class="pd-sub-title">Select Color</h5>
-                                    {% if products.get_color_display == "Red"  %}
+                                    {% if object.get_color_display == "Red"  %}
                                     <button class="active" style="background-color: #ff0000;"><i class="fa fa-check"></i></button>
                                     {% else %}
                                     <button style="background-color: #ff0000;"><i class="fa fa-check"></i></button>
                                     {% endif %}
-                                     {% if products.get_color_display == "BLUE"  %}
+                                     {% if object.get_color_display == "BLUE"  %}
                                     <button class="active" style="background-color: #0066ff;"><i class="fa fa-check"></i></button>
                                     {% else %}
                                      <button style="background-color: #0066ff;"><i class="fa fa-check"></i></button>
                                     {% endif %}
-                                    {% if products.get_color_display == "Orange"  %}
+                                    {% if object.get_color_display == "Orange"  %}
                                     <button class="active" style="background-color: #ff471a;"><i class="fa fa-check"></i></button>
                                     {% else %}
                                     <button style="background-color: #ff471a;"><i class="fa fa-check"></i></button>
                                     {% endif %}
-                                    {% if products.get_color_display == "BLACK"  %}
+                                    {% if object.get_color_display == "BLACK"  %}
                                     <button class="active" style="background-color: #000;"><i class="fa fa-check"></i></button>
                                     {% else %}
                                     <button style="background-color: #000;"><i class="fa fa-check"></i></button>
                                     {% endif %}
-                                    {% endfor %}
+                                    
                                 </div>
 
                                 <!-- Quantity Cart -->
@@ -407,8 +429,8 @@
                 <div class="container-fluid">
                     <div class="footer-bottom text-center ptb-20">
                         <p>
-                            © 2017
-                            <a href="https://freethemescloud.com/" target="_blank">Free themes Cloud</a>
+                            © 2019
+                            <a href="https://freethemescloud.com/" target="_blank">Modyzo</a>
                             . All Rights Reserved.
                         </p>
                     </div>

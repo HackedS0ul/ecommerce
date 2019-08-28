@@ -31,11 +31,13 @@ class Products(models.Model):
     color = models.CharField(choices=COLOR_CHOICES, max_length=2)
     slug = models.SlugField(max_length=10)
     category = models.CharField(choices=CATEGORY_CHOICES, max_length=2)
+    ratings = models.IntegerField()
+    
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("shops:product-detail", kwargs={
+        return reverse("shops:product", kwargs={
             'slug': self.slug
         })

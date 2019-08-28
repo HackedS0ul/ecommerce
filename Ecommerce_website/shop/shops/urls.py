@@ -7,5 +7,5 @@ app_name = 'shops'
 
 urlpatterns = [
     path("", HomeView.as_view(), name="home"),
-    path("product-page/<slug>/", ProductView.as_view(), name="product-detail"),
+    path('product/<slug>/', ProductView.as_view(), name="product"),
 ]
