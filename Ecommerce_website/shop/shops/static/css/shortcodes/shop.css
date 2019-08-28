@@ -22,7 +22,9 @@
     font-weight: normal;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: #333;
+    color: #fff;
+    border: 1px solid;
+    background: #000;
     transition: all .3s ese 0s;
 }
 .shop-title h3 a:hover {
@@ -38,6 +40,9 @@
     font-weight: normal;
     letter-spacing: 2px;
     text-transform: uppercase;
+    color: #fff;
+    border: 1px solid;
+    background: #000;
 }
 .shop-title span.old-price {
     padding-left: 10px;
